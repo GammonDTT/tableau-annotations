@@ -48,11 +48,15 @@
 		});
 
 		contentTxt.addEventListener('keydown', (e)=>{
-			if(e.keyCode===83){ // s
-				if(e.ctrlKey){
-					save();
-					return e.preventDefault();
-				}
+			switch(e.keyCode){
+				case 27: // esc
+					contentTxt.blur();
+					break;
+				case 83:// s
+					if(e.ctrlKey){
+						save();
+						return e.preventDefault();
+					}
 			}
 		});
 
