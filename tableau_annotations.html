@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<style>
+			html {
+				height: 100%;
+			}
+
+			body {
+				font-family: 'Roboto', sans-serif;
+				font-size: 15px;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+
+			#content {
+				border: none;
+				font: inherit;
+				height: 100%;
+				margin: 0;
+				outline: none;
+				padding: 0;
+				resize: none;
+				text-align: center;
+				vertical-align: middle;
+				width: 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<textarea id="content"></textarea>
+	</body>
+	<script>
+		const id=new URL(window.location.href).searchParams.get('id');
+		const contentTxt=document.querySelector('#content');
+
+		if(id!==null)
+			load();
+
+		function load(){
+			console.log(id);
+			contentTxt.innerHTML='Hello World!';
+		}
+
+		function save(){
+			alert(contentTxt.innerHTML);
+		}
+	</script>
+</html>
