@@ -40,12 +40,38 @@
 			load();
 
 		function load(){
-			console.log(id);
-			contentTxt.innerHTML='Hello World!';
+			if(id===null)
+				return;
+
+			let xhr=new XMLHttpRequest();
+
+			xhr.open('GET', `https://script.google.com/macros/s/AKfycbwvw4ka-gBMS34utRIynt2OaJMNzMfglA5Sdt-RQ8bug4HryMTq/exec?id=${id}`, true);
+			xhr.onreadystatechange=()=>{
+				if(xhr.readyState===4 && xhr.status===200){
+					contentTxt.value=xhr.responseText;
+				}
+			};
+			xhr.send();
 		}
 
 		function save(){
-			alert(contentTxt.innerHTML);
+			if(id===null)
+				return;
+
+			let xhr=new XMLHttpRequest();
+			
+			xhr.open('POST', `https://script.google.com/macros/s/AKfycbwvw4ka-gBMS34utRIynt2OaJMNzMfglA5Sdt-RQ8bug4HryMTq/exec`, true);
+			xhr.onreadystatechange=()=>{
+				if(xhr.readyState===4 && xhr.status===200){
+					if(xhr.responseText==='1'){
+						console.log('Saved');
+					}
+				}
+			};
+			xhr.send(JSON.stringify({
+				id: id,
+				content: contentTxt.value
+			}));
 		}
 	</script>
 </html>
