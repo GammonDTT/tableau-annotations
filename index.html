@@ -41,6 +41,7 @@
 		const id=params.get('id');
 		const bgColor=params.get('bgColor');
 		const color=params.get('color');
+		const size=params.get('size');
 		const contentTxt=document.querySelector('#content');
 
 		if(id!==null)
@@ -49,6 +50,8 @@
 			contentTxt.style.background=bgColor.replace(/^([a-fA-F0-9]{6})$/, '#$1');
 		if(color!==null)
 			contentTxt.style.color=color.replace(/^([a-fA-F0-9]{6})$/, '#$1');
+		if(size!==null)
+			contentTxt.style.fontSize=size;
 
 		contentTxt.addEventListener('input', ()=>{
 			contentTxt.classList.add('italic');
