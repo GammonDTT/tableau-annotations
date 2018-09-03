@@ -40,12 +40,15 @@
 		const params=new URL(window.location.href).searchParams;
 		const id=params.get('id');
 		const bgColor=params.get('bgColor');
+		const color=params.get('color');
 		const contentTxt=document.querySelector('#content');
 
 		if(id!==null)
 			load();
 		if(bgColor!==null)
 			contentTxt.style.background=bgColor.replace(/^([a-fA-F0-9]{6})$/, '#$1');
+		if(color!==null)
+			contentTxt.style.color=color.replace(/^([a-fA-F0-9]{6})$/, '#$1');
 
 		contentTxt.addEventListener('input', ()=>{
 			contentTxt.classList.add('italic');
