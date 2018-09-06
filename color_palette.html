@@ -8,6 +8,7 @@
 				height: 100%;
 				margin: 0;
 				padding: 0;
+				user-select: none;
 				width: 100%;
 			}
 
@@ -20,6 +21,7 @@
 
 			.color {
 				align-items: center;
+				cursor: pointer;
 				display: flex;
 				flex: 1;
 				flex-direction: column;
@@ -27,6 +29,10 @@
 				justify-content: center;
 				text-transform: uppercase;
 				width: 100%;
+			}
+
+			.color:active {
+				animation: pulse .6s;
 			}
 
 			.color > div:first-child {
@@ -80,4 +86,19 @@
 			</div>
 		</div>
 	</body>
+	<script>
+		let colors=document.querySelectorAll('.color');
+
+		for(color of colors){
+			color.addEventListener('click', e=>{
+				let txt=document.createElement('textarea');
+
+				txt.value=e.currentTarget.querySelector(':last-child').innerHTML;
+				document.body.appendChild(txt);
+				txt.select();
+				document.execCommand('copy');
+				document.body.removeChild(txt);
+			});
+		}
+	</script>
 </html>
