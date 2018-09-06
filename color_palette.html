@@ -26,23 +26,55 @@
 				flex: 1;
 				flex-direction: column;
 				font-size: 2em;
+				height: 100%;
 				justify-content: center;
 				text-transform: uppercase;
 				width: 100%;
 			}
 
-			.color:active {
-				animation: pulse .6s;
+			.color:hover .hint {
+				opacity: 1;
 			}
 
-			.color > div:first-child {
+			.color:hover .label {
+				opacity: 0;
+			}
+
+			.header {
+				display: flex;
+				justify-content: center;
+				position: relative;
+				width: 100%;
+			}
+
+			.hint,
+			.label {
 				font-size: 38.2%;
 				font-weight: bold;
-				letter-spacing: .4em;
+				transition: opacity .4s;
+			}
+
+			.hint {
+				letter-spacing: .2em;				
+				margin-left: .2em;
+				opacity: 0;
+				position: absolute;
+				top: 0;
+			}
+
+			.label {
+				letter-spacing: .4em;				
 				margin-left: .4em;
 			}
 
-			#container {
+			.row {
+				align-items: center;
+				display: flex;
+				flex: 1;
+				justify-content: center;
+			}
+
+			#table {
 				display: flex;
 				flex-direction: column;
 				height: 100%;
@@ -51,37 +83,61 @@
 		</style>
 	</head>
 	<body>
-		<div id="container">
+		<div id="table">
 			<div class="color" style="background:#202b30;color:#f2fff6">
-				<div>BACKGROUND</div>
+				<div class="header">
+					<div class="label">BACKGROUND</div>
+					<div class="hint">CLICK TO COPY</div>
+				</div>
 				<div>#202b30</div>
 			</div>
 			<div class="color" style="background:#b1ede3;color:#202b30">
-				<div>FIRST</div>
+				<div class="header">
+					<div class="label">F1RST</div>
+					<div class="hint">CLICK TO COPY</div>
+				</div>
 				<div>#b1ede3</div>
 			</div>
 			<div class="color" style="background:#e6f4b7;color:#202b30">
-				<div>SECOND</div>
+				<div class="header">
+					<div class="label">SECOND</div>
+					<div class="hint">CLICK TO COPY</div>
+				</div>
 				<div>#e6f4b7</div>
 			</div>
 			<div class="color" style="background:#fd513b;color:#f2fff6">
-				<div>THIRD</div>
+				<div class="header">
+					<div class="label">THIRD</div>
+					<div class="hint">CLICK TO COPY</div>
+				</div>
 				<div>#fd513b</div>
 			</div>
 			<div class="color" style="background:#f2fff6;color:#202b30">
-				<div>FOURTH</div>
+				<div class="header">
+					<div class="label">FOURTH</div>
+					<div class="hint">CLICK TO COPY</div>
+				</div>
 				<div>#f2fff6</div>
 			</div>
 			<div class="color" style="background:#50717a;color:#f2fff6">
-				<div>FIFTH</div>
+				<div class="header">
+					<div class="label">FIFTH</div>
+					<div class="hint">CLICK TO COPY</div>
+				</div>
 				<div>#50717a</div>
 			</div>
 			<div class="color" style="background:#75c1ce;color:#202b30">
-				<div>FIRST BACKUP</div>
+				<div class="header">
+					<div class="label">FIRST BACKUP</div>
+					<div class="hint">CLICK TO COPY</div>
+				</div>
 				<div>#75c1ce</div>
 			</div>
 			<div class="color" style="background:#52aab8;color:#202b30">
-				<div>SECOND BACKUP</div>
+				<div class="header">
+					<div class="label">SECOND BACKUP</div>
+					<div class="hint">CLICK TO COPY</div>
+				</div>
 				<div>#52aab8</div>
 			</div>
 		</div>
@@ -89,16 +145,16 @@
 	<script>
 		let colors=document.querySelectorAll('.color');
 
-		for(color of colors){
+		colors.forEach(color=>{
 			color.addEventListener('click', e=>{
 				let txt=document.createElement('textarea');
 
-				txt.value=e.currentTarget.querySelector(':last-child').innerHTML;
+				txt.value=color.querySelector(':scope > :last-child').innerHTML.toUpperCase();
 				document.body.appendChild(txt);
 				txt.select();
 				document.execCommand('copy');
 				document.body.removeChild(txt);
-			});
-		}
+			});			
+		});
 	</script>
 </html>
